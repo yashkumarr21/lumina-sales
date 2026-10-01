@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUMINA SaaS - B2B Sales Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4d8eff",
+                        "on-primary": "#002e6a",
+                        "error": "#ffb4ab",
+                        "secondary": "#4cd7f6",
+                        "inverse-surface": "#dae2fd",
+                        "surface-tint": "#adc6ff",
+                        "inverse-on-surface": "#283044",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#e9ddff",
+                        "background": "#0b1326",
+                        "on-error": "#690005",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-container": "#03b5d3",
+                        "on-tertiary-fixed": "#23005c",
+                        "secondary-fixed": "#acedff",
+                        "outline": "#8c909f",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary-fixed-variant": "#5516be",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface": "#0b1326",
+                        "surface-container": "#171f33",
+                        "outline-variant": "#424754",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-background": "#dae2fd",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#d0bcff",
+                        "on-tertiary": "#3c0091",
+                        "surface-container-low": "#131b2e",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "tertiary-container": "#a078ff",
+                        "on-secondary": "#003640",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface": "#dae2fd",
+                        "tertiary": "#d0bcff",
+                        "surface-dim": "#0b1326",
+                        "on-tertiary-container": "#340080",
+                        "on-secondary-container": "#00424e",
+                        "surface-container-high": "#222a3d",
+                        "on-secondary-fixed": "#001f26",
+                        "inverse-primary": "#005ac2",
+                        "surface-variant": "#2d3449",
+                        "on-primary-container": "#00285d",
+                        "primary": "#adc6ff",
+                        "surface-bright": "#31394d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "stack-lg": "48px",
+                        "stack-xl": "80px",
+                        "gutter": "24px",
+                        "stack-sm": "12px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "stack-md": "24px",
+                        "stack-xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"],
+                        "body-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .glass-panel-hover:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4d8eff, #4cd7f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4d8eff 0%, #03b5d3 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid transparent;
+            color: white;
+        }
+        .btn-ghost:hover {
+            border-color: rgba(255, 255, 255, 1);
+        }
+        
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col relative overflow-x-hidden font-body-md text-body-md">
+<!-- Fixed Shader Background -->
+<!-- STITCH_SHADER_START:ANIMATION_2 class="fixed inset-0 w-full h-full -z-10" -->
+<div class="fixed inset-0 w-full h-full -z-10" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+vec3 hsb2rgb(in vec3 c){
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0, 0.0, 1.0);
+    rgb = rgb*rgb*(3.0-2.0*rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
+}
+
+void main() {
+    vec2 st = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    float t = u_time * 0.15;
+    
+    // Create multiple moving centers for the "aurora" effect
+    vec2 p1 = vec2(0.5 + 0.3 * cos(t), 0.5 + 0.2 * sin(t * 1.2));
+    vec2 p2 = vec2(0.2 + 0.2 * sin(t * 0.8), 0.8 + 0.1 * cos(t * 1.5));
+    vec2 p3 = vec2(0.8 + 0.1 * cos(t * 1.1), 0.2 + 0.2 * sin(t * 0.9));
+    
+    // Interactions with mouse
+    p1 = mix(p1, mouse, 0.1);
+    
+    float d1 = length(st - p1);
+    float d2 = length(st - p2);
+    float d3 = length(st - p3);
+    
+    // Vibrant colors from the design system
+    vec3 blue = vec3(0.23, 0.51, 0.96);    // Electric Blue
+    vec3 cyan = vec3(0.02, 0.71, 0.83);    // Cyan
+    vec3 purple = vec3(0.55, 0.36, 0.96);  // Purple
+    vec3 teal = vec3(0.08, 0.72, 0.65);    // Teal
+    
+    // Mix them based on distance and time
+    vec3 color = blue * smoothstep(0.8, 0.0, d1);
+    color += cyan * smoothstep(0.6, 0.0, d2);
+    color += purple * smoothstep(0.7, 0.0, d3);
+    
+    // Add some noise/shimmer
+    float noise = fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453);
+    color += noise * 0.02;
+    
+    // Background base (Deep Navy)
+    vec3 bg = vec3(0.04, 0.06, 0.12);
+    
+    gl_FragColor = vec4(mix(bg, color, 0.4), 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/10 dark:bg-surface/10 backdrop-blur-3xl border-b border-white/15 dark:border-white/10 shadow-2xl">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-unit">
+<button class="p-2 hover:bg-white/5 dark:hover:bg-white/5 hover:backdrop-blur-xl transition-all duration-300 rounded-full text-on-surface-variant dark:text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-background tracking-tight">LUMINA SaaS</h1>
+</div>
+<button class="btn-primary px-4 py-2 rounded-full font-label-md text-label-md active:scale-95 transition-transform">
+                Book a Demo
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[100px] pb-stack-xl flex flex-col px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full z-10 relative">
+<!-- Hero Section -->
+<section class="flex flex-col items-center justify-center text-center mt-stack-lg mb-stack-xl">
+<h2 class="font-display-lg text-display-lg md:text-[80px] leading-tight font-extrabold mb-stack-md max-w-4xl tracking-tighter">
+                Scale Sales with <br/><span class="gradient-text">AI-Driven Intelligence</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg max-w-2xl">
+                The executive-level platform for lead gen, pipeline automation, and closing deals faster.
+            </p>
+<div class="flex flex-col w-full gap-stack-sm md:flex-row md:w-auto md:gap-gutter">
+<button class="btn-primary w-full md:w-auto px-8 py-4 rounded-xl font-label-md text-label-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    Book a Demo
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="btn-secondary w-full md:w-auto px-8 py-4 rounded-xl font-label-md text-label-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+                    Watch Demo
+                </button>
+</div>
+</section>
+<!-- Social Proof Marquee -->
+<section class="mb-stack-xl overflow-hidden w-full">
+<p class="text-center font-label-sm text-label-sm text-outline mb-stack-sm uppercase tracking-widest">Trusted by 10,000+ teams</p>
+<!-- Marquee Container -->
+<div class="relative flex overflow-x-hidden w-full mask-image-linear-gradient">
+<div class="animate-marquee whitespace-nowrap flex items-center gap-stack-md py-4">
+<!-- Duplicate content for seamless loop -->
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">rocket_launch</span>
+<span class="font-label-md text-label-md text-on-surface">Acme Corp</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+<span class="font-label-md text-label-md text-on-surface">GlobalNet</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">pie_chart</span>
+<span class="font-label-md text-label-md text-on-surface">DataSynergy</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">moving</span>
+<span class="font-label-md text-label-md text-on-surface">Apex Logic</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">security</span>
+<span class="font-label-md text-label-md text-on-surface">Shield AI</span>
+</div>
+<!-- Duplicates -->
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">rocket_launch</span>
+<span class="font-label-md text-label-md text-on-surface">Acme Corp</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+<span class="font-label-md text-label-md text-on-surface">GlobalNet</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Preview (Vertical Stack) -->
+<section class="flex flex-col gap-stack-md">
+<!-- Feature 1 -->
+<div class="glass-card-dark rounded-xl p-stack-md flex flex-col gap-stack-sm relative overflow-hidden group border border-white/10 transition-all duration-500 hover:border-white/30">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-container/20 rounded-full blur-3xl group-hover:bg-primary-container/40 transition-all duration-700"></div>
+<div class="flex items-center gap-3 mb-2 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">target</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">AI Lead Scoring</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant relative z-10">
+                    Predictive models analyze thousands of data points to identify the prospects most likely to convert, ensuring your team focuses on high-value targets.
+                </p>
+<div class="mt-4 relative z-10">
+<img class="w-full h-48 object-cover rounded-lg border border-white/10 opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A futuristic dashboard UI showing complex data visualization, glowing neon blue lines on a dark glass background, sleek and premium enterprise software aesthetic, ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0z8LyUnmYo8JPkWizzOuyfvCxgw_JRYMMz5lbZBDOaprlDqKHMWVvHwek6uD1FC7d8lGzmdY5Km0ALj6Xos9nnLff6QuoDcbNGf-bEvYLXkD1iJI09xfSNudQMCxZS-Fhn8ZVBJyL7FQRTb4PKClZH0GwgeypJi6h08BhERNYK2H61T4sjby6atUySDevQw8pv6rAklcPetWo_xZ21oVn3j-zE6fRgYpNYXPnvm1AlRoOyvPggOev6w"/>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="glass-card-dark rounded-xl p-stack-md flex flex-col gap-stack-sm relative overflow-hidden group border border-white/10 transition-all duration-500 hover:border-white/30">
+<div class="absolute -left-10 -bottom-10 w-40 h-40 bg-secondary-container/20 rounded-full blur-3xl group-hover:bg-secondary-container/40 transition-all duration-700"></div>
+<div class="flex items-center gap-3 mb-2 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">schema</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Pipeline Automation</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant relative z-10">
+                    Automate follow-ups, schedule meetings, and move deals through stages with zero-touch workflows driven by contextual AI agents.
+                </p>
+<div class="mt-4 relative z-10">
+<img class="w-full h-48 object-cover rounded-lg border border-white/10 opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A stylized glowing node graph representing automated workflows, dark mode, vibrant cyan and blue connections, sleek glassmorphism panels floating in space, high tech enterprise software concept." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIW8mUzbSyX0cNeVE4gt_IL-MF1oXV45AxgOQpTODZXqnJDOHWB8zUiQDYDmhf8P7TigRdklNl5asoMFvnFEBEqX6WnmliVkIMR243jILcYTVnyTeqNT2OOBHsrx3b0-yNJv-a_c7y4ylnvTt9oTCGr4Gif4ZY0ZntyKSJjJol0DnqasVvFLG1IiJyZJvP83tAsqmIGfWJ-DAjErKJooRrpuXid_YTxazfkLGHuiRojEBcWdGIWZhlyA"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-xl border-t border-white/10 bg-background dark:bg-surface-container-lowest z-10 relative">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-2 md:col-span-1 mb-stack-md md:mb-0">
+<h4 class="font-headline-md text-headline-md font-extrabold text-on-background mb-4">LUMINA SaaS</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+                    © 2024 Lumina Intelligence.<br/>All rights reserved.
+                </p>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Platform</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Solutions</a>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Enterprise</a>
+</div>
+</div>
+</footer>
+<style>
+        .mask-image-linear-gradient {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+    </style>
+</body></html>
