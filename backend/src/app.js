@@ -7,24 +7,38 @@ import apiRouter from './routes/index.js';
 
 const app = express();
 
+// Allowed origins list from CORS_ORIGIN environment variable
+const allowedOrigins = (config.corsOrigin || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 // Enable Cross-Origin Resource Sharing
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps, curl, or server-to-server)
       if (!origin) return callback(null, true);
-      // In development allow localhost origins
+
+      // In development or when wildcard is set, allow all origins
+      if (config.nodeEnv === 'development' || config.corsOrigin === '*') {
+        return callback(null, true);
+      }
+
+      // Check against configured production origins or localhost
       if (
-        config.nodeEnv === 'development' ||
+        allowedOrigins.includes(origin) ||
         origin.includes('localhost') ||
-        origin.includes('127.0.0.1') ||
-        origin === config.corsOrigin
+        origin.includes('127.0.0.1')
       ) {
         return callback(null, true);
       }
+
       return callback(null, true);
     },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   })
 );
 

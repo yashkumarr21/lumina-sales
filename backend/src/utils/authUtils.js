@@ -15,14 +15,22 @@ export const hashPassword = (password) => {
  * Compare plain password with stored salt:hash
  */
 export const comparePassword = (plainPassword, storedHash) => {
-  if (!storedHash || !storedHash.includes(':')) {
-    // Fallback comparison for plain legacy/seed hashes if any
-    return plainPassword === storedHash;
+  try {
+    if (!storedHash || typeof storedHash !== 'string' || !storedHash.includes(':')) {
+      // Fallback comparison for plain legacy/seed hashes if any
+      return plainPassword === storedHash;
+    }
+    const [salt, key] = storedHash.split(':');
+    if (!salt || !key) return false;
+    const keyBuffer = Buffer.from(key, 'hex');
+    const derivedKey = crypto.scryptSync(plainPassword, salt, 64);
+    if (keyBuffer.length !== derivedKey.length) {
+      return false;
+    }
+    return crypto.timingSafeEqual(keyBuffer, derivedKey);
+  } catch (err) {
+    return false;
   }
-  const [salt, key] = storedHash.split(':');
-  const keyBuffer = Buffer.from(key, 'hex');
-  const derivedKey = crypto.scryptSync(plainPassword, salt, 64);
-  return crypto.timingSafeEqual(keyBuffer, derivedKey);
 };
 
 /**

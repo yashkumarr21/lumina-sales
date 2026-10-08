@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CapabilityDetailCard } from '../components/features/CapabilityDetailCard';
 import { CAPABILITIES } from '../data/mockData';
+import { FeatureCapability } from '../types';
+import { api } from '../services/api';
 
 interface FeaturesPageProps {
   onOpenDemo: () => void;
 }
 
 export const FeaturesPage: React.FC<FeaturesPageProps> = ({ onOpenDemo }) => {
+  const [capabilitiesList, setCapabilitiesList] = useState<FeatureCapability[]>(CAPABILITIES);
+
+  useEffect(() => {
+    let isMounted = true;
+    api.getCapabilities().then((caps) => {
+      if (isMounted && caps && caps.length > 0) {
+        setCapabilitiesList(caps);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <main className="relative z-10 pt-[80px] pb-32 px-margin-mobile md:px-margin-desktop flex flex-col gap-stack-xl max-w-container-max mx-auto w-full">
       {/* Header */}
@@ -24,7 +40,7 @@ export const FeaturesPage: React.FC<FeaturesPageProps> = ({ onOpenDemo }) => {
 
       {/* Capabilities Vertical Stack */}
       <section className="flex flex-col gap-stack-md max-w-4xl mx-auto w-full">
-        {CAPABILITIES.map((capability, index) => (
+        {capabilitiesList.map((capability, index) => (
           <CapabilityDetailCard
             key={capability.id}
             capability={capability}

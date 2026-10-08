@@ -1,8 +1,13 @@
 import { DealActivity, PricingPlan, FaqItem, FeatureCapability, User, AuthResponse, LoginCredentials, RegisterData } from '../types';
 import { ACTIVITIES, PRICING_PLANS, FAQS, CAPABILITIES } from '../data/mockData';
+const getApiBaseUrl = (): string => {
+  const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '') as string;
+  if (!envUrl) return '/api';
+  const clean = envUrl.trim().replace(/\/+$/, '');
+  return clean.endsWith('/api') ? clean : `${clean}/api`;
+};
 
-const API_BASE_URL = '/api';
-
+const API_BASE_URL = getApiBaseUrl();
 /**
  * Robust fetch helper with timeout and fallback support
  */

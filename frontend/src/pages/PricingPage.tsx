@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BillingToggle } from '../components/pricing/BillingToggle';
 import { PricingCard } from '../components/pricing/PricingCard';
 import { FaqAccordion } from '../components/pricing/FaqAccordion';
 import { FAQS, PRICING_PLANS } from '../data/mockData';
-import { PricingPlan } from '../types';
+import { PricingPlan, FaqItem } from '../types';
+import { api } from '../services/api';
 
 interface PricingPageProps {
   onOpenDemo: () => void;
@@ -11,6 +12,25 @@ interface PricingPageProps {
 
 export const PricingPage: React.FC<PricingPageProps> = ({ onOpenDemo }) => {
   const [isAnnual, setIsAnnual] = useState(true);
+  const [pricingPlans, setPricingPlans] = useState<PricingPlan[]>(PRICING_PLANS);
+  const [faqsList, setFaqsList] = useState<FaqItem[]>(FAQS);
+
+  useEffect(() => {
+    let isMounted = true;
+    api.getPricingPlans().then((plans) => {
+      if (isMounted && plans && plans.length > 0) {
+        setPricingPlans(plans);
+      }
+    });
+    api.getFaqs().then((faqs) => {
+      if (isMounted && faqs && faqs.length > 0) {
+        setFaqsList(faqs);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleSelectPlan = (_plan: PricingPlan) => {
     onOpenDemo();
@@ -39,7 +59,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenDemo }) => {
 
       {/* Pricing Cards Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch max-w-6xl mx-auto w-full">
-        {PRICING_PLANS.map((plan) => (
+        {pricingPlans.map((plan) => (
           <PricingCard
             key={plan.id}
             plan={plan}
@@ -50,7 +70,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenDemo }) => {
       </section>
 
       {/* FAQ Accordion */}
-      <FaqAccordion faqs={FAQS} />
+      <FaqAccordion faqs={faqsList} />
 
       {/* Final CTA Banner */}
       <section className="glass-panel-highlight rounded-2xl p-8 md:p-12 text-center flex flex-col gap-4 items-center max-w-4xl mx-auto w-full border border-primary/30 relative overflow-hidden">

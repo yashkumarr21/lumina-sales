@@ -6,20 +6,25 @@ import { config } from './index.js';
  * Solves the Node.js c-ares DNS SRV lookup bug (querySrv EBADRESP) on Windows.
  */
 const getDirectReplicaUri = (user, pass) => {
-  const username = encodeURIComponent(user || 'ykparjapati21_db_user');
-  const password = encodeURIComponent(pass || '5JoGY0qVML75KNbc');
+  if (!user || !pass) return '';
+  const username = encodeURIComponent(user);
+  const password = encodeURIComponent(pass);
   return `mongodb://${username}:${password}@ac-0suxlwf-shard-00-00.hwjyeh9.mongodb.net:27017,ac-0suxlwf-shard-00-01.hwjyeh9.mongodb.net:27017,ac-0suxlwf-shard-00-02.hwjyeh9.mongodb.net:27017/lumina_sales?ssl=true&replicaSet=atlas-ot5lzu-shard-0&authSource=admin&retryWrites=true&w=majority`;
 };
 
 export const connectDB = async () => {
   const rawUri = config.mongoUri || '';
-  const directUri = config.mongoDirectUri || getDirectReplicaUri(config.mongoUser, config.mongoPassword);
+  const directUri =
+    config.mongoDirectUri ||
+    (config.mongoUser && config.mongoPassword
+      ? getDirectReplicaUri(config.mongoUser, config.mongoPassword)
+      : '');
 
   if (!rawUri && !directUri) {
     console.log(`
 ℹ️  MongoDB Atlas:
-    No valid connection string detected yet in atlas-credentials.env or backend/.env.
-    Running in in-memory mode in the meantime.
+    No valid connection string detected in environment variables.
+    Running in memory store mode for seamless offline development.
     `);
     return false;
   }

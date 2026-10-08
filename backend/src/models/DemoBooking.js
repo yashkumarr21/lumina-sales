@@ -14,4 +14,4 @@ const demoBookingSchema = new mongoose.Schema(
   }
 );
 
-export const DemoBooking = mongoose.model('DemoBooking', demoBookingSchema);
+export const DemoBooking = mongoose.models.DemoBooking || mongoose.model('DemoBooking', demoBookingSchema);
